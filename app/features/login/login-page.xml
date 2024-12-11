@@ -1,0 +1,37 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      navigatingTo="navigatingTo">
+    <ActionBar title="Login" visible="false" />
+    
+    <ScrollView>
+        <StackLayout class="p-6">
+            <Label text="Bienvenido a tu Banca" 
+                   class="text-2xl text-center mb-8 text-gray-800" />
+            
+            <StackLayout class="form space-y-4">
+                <TextField hint="Usuario (demo)" 
+                          text="{{ username }}" 
+                          class="input p-4 border rounded-lg" 
+                          autocorrect="false"
+                          autocapitalizationType="none" />
+                
+                <TextField hint="Contraseña (demo123)" 
+                          text="{{ password }}" 
+                          secure="true" 
+                          class="input p-4 border rounded-lg" />
+                
+                <Button text="Iniciar Sesión" 
+                        tap="{{ onLogin }}" 
+                        class="-primary p-4 rounded-lg bg-blue-500 text-white" />
+                        
+                <Label text="{{ errorMessage }}" 
+                       class="text-red-500 text-center" 
+                       textWrap="true"
+                       visibility="{{ errorMessage ? 'visible' : 'collapsed' }}" />
+                       
+                <Label text="Usar demo/demo123 para acceder" 
+                       class="text-gray-500 text-center text-sm" 
+                       textWrap="true" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

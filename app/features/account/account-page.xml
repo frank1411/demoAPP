@@ -1,0 +1,46 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Mi Cuenta">
+        <ActionItem tap="{{ onLogout }}" 
+                   ios.position="right" 
+                   android.position="actionBar">
+            <Label text="Salir" />
+        </ActionItem>
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Saldo -->
+            <StackLayout class="bg-blue-100 p-6 rounded-lg mb-6">
+                <Label text="Saldo Disponible" 
+                       class="text-lg text-gray-600 mb-2" />
+                <Label text="{{ formattedBalance }}" 
+                       class="text-3xl font-bold mb-2" />
+                <Label text="{{ account.accountNumber }}" 
+                       class="text-sm text-gray-500" />
+            </StackLayout>
+            
+            <!-- Últimas Transacciones -->
+            <Label text="Últimas Transacciones" 
+                   class="text-xl font-semibold mb-4" />
+            
+            <ListView items="{{ transactions }}" 
+                      class="list-group" 
+                      separatorColor="#f0f0f0">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" rows="auto, auto" 
+                                class="p-4 border-b border-gray-200">
+                        <Label text="{{ description }}" 
+                               row="0" col="0"
+                               class="font-medium text-gray-800" />
+                        <Label text="{{ $parents['ListView'].formatTransactionAmount(amount, type) }}"
+                               row="0" col="1"
+                               class="{{ type === 'credit' ? 'text-green-600' : 'text-red-600' }} font-medium" />
+                        <Label text="{{ $parents['ListView'].formatTransactionDate(date) }}"
+                               row="1" col="0"
+                               class="text-sm text-gray-500 mt-1" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>
